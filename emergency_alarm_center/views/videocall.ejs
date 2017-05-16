@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+
+
+<html>
+
+<head>
+  <title>Notfallmeldezentrale - Videoanruf <%=pat%></title>
+  <h1> Videoanruf - <%=pat%></h1>
+  <script src="videocall.js"></script>
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+  <style>
+    body {
+      padding-top: 80px;
+    }
+  </style>
+</head>
+
+<body>
+  <video id="remoteVideo" autoplay></video>
+  <video id="localVideo" autoplay muted></video>
+  <input id="videoCallButton" type="button" disabled value="Video Call" />
+  <input id="endCallButton" type="button" disabled value="End Call" />
+  
+  <script type="text/javascript">
+    window.addEventListener("load", pageReady);
+  </script>
+  <br />
+  <a href="/" class="btn btn-default"><span class="fa fa-user"></span> Go Back</a>
+</body>
+
+</html>

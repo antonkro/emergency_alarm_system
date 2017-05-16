@@ -1,3 +1,0 @@
-/*
-here comes all js for the view
-*/
