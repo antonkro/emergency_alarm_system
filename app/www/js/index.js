@@ -18,7 +18,7 @@
  */
 var app = {
     // Application Constructor
-    initialize: function() {
+    initialize: function () {
         document.addEventListener('deviceready', this.onDeviceReady.bind(this), false);
     },
 
@@ -26,12 +26,12 @@ var app = {
     //
     // Bind any cordova events here. Common events are:
     // 'pause', 'resume', etc.
-    onDeviceReady: function() {
+    onDeviceReady: function () {
         this.receivedEvent('deviceready');
     },
 
     // Update DOM on a Received Event
-    receivedEvent: function(id) {
+    receivedEvent: function (id) {
         var parentElement = document.getElementById(id);
         var listeningElement = parentElement.querySelector('.listening');
         var receivedElement = parentElement.querySelector('.received');
@@ -43,4 +43,77 @@ var app = {
     }
 };
 
-// app.initialize();
+app.initialize();
+
+var P2P = require('socket.io-p2p');
+var io = require('socket.io-client');
+
+document.addEventListener('deviceready', function () {
+    var outcoming = document.getElementById("outcoming");
+    // var socket = io.connect("http://localhost:3000");
+    var socket = io();
+    var opts = {peerOpts: {trickle: false}, autoUpgrade: false}
+    var p2p = new P2P(socket, opts, function () {
+        p2p.emit('peer-obj', 'Hello there. I am ' + p2p.peerId)
+    })
+
+
+// this event will be triggered over the socket transport
+// until `usePeerConnection` is set to `true`
+
+    // data ========================================================
+
+
+
+//     socket.on('connect', function () {
+//
+//         socket.on('text', function (text) {
+//             alert(text);
+//         });
+//     });
+//
+    document.getElementById("btnSend").addEventListener("click", function () {
+        console.log(outcoming.value.toString());
+        p2p.emit('data', outcoming.value.toString());
+        //         socket.emit('data',outcoming.value.toString());
+    });
+
+
+    // video =======================================================
+    // var config = {
+    //     isInitiator: true,
+    //     turn: {
+    //         host: 'stun:stun.l.google.com:19302',
+    //         // username: 'test',
+    //         // password: '123'
+    //     },
+    //     streams: {
+    //         audio: true,
+    //         video: false
+    //     }
+    // }
+    //
+    // var  center = "emergency_center";
+    //
+    // var session = new cordova.plugins.phonertc.Session(config);
+    //
+    //
+    // session.on('sendMessage', function (data) {
+    //     socket.center.emit(data);
+    // });
+    //
+    // socket.onMessage = function (message) {
+    //     session.receiveMessage(message);
+    // };
+    //
+    // session.on('answer', function () {
+    //     console.log('Other client answered!');
+    // });
+    //
+    // session.on('disconnect', function () {
+    //     console.log('Other client disconnected!');
+    // });
+    //
+    // session.call();
+
+});

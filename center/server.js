@@ -1,37 +1,27 @@
 const express = require('express'),
     app = express(),
     server = require('http').Server(app),
-    io = require('socket.io')(server);
+    io = require('socket.io')(server),
+    p2p = require('socket.io-p2p-server').Server;
 
-
-// Configuration ======================================================================
+// configuration ==================================================================
 //
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
-
-// internal modules ======================================================================
+io.use(p2p);
+// internal modules ===============================================================
 require(__dirname + '/routes.js')(app);
+require(__dirname + '/socketio.js')(io,p2p);
 
-
-//ressources ======================================================================
+// internal ressources =====================================================================
 app.use(express.static(__dirname + '/views/css'));
 app.use(express.static(__dirname + '/views/js'));
+app.use(express.static(__dirname + '/views/js/libs'));
 app.use(express.static(__dirname + '/views'));
 
 
-io.sockets.on('connection', function (socket) {
-    console.log('socket connected');
 
-    socket.on('disconnect', function () {
-        console.log('socket disconnected');
-    });
-    socket.on('data', function (data) {
-        console.log("DATA: " +data);
-        io.sockets.emit('data', data);
-    })
-    // socket.emit('text', 'wow. such event. very real time.');
-});
-
+// server startup=====================================================================
 server.listen(3000, function () {
     console.log("Server started on Port 3000")
 });

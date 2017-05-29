@@ -12,7 +12,14 @@
         },
         "cordova-plugin-console": {
             "PACKAGE_NAME": "socket.io.example"
+        },
+        "com.dooble.phonertc": {
+            "PACKAGE_NAME": "emergency.alarm.app"
         }
     },
-    "dependent_plugins": {}
+    "dependent_plugins": {
+        "cordova-plugin-compat": {
+            "PACKAGE_NAME": "emergency.alarm.app"
+        }
+    }
 }

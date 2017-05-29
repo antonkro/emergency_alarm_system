@@ -1,18 +1,16 @@
-module.exports = function(app,appEnv) {
+module.exports = function(app) {
     // var helpers = require(__dirname + '/helpers');
 
     app.get('/', function(req, res) {
         res.render('main');
     });
 
-    /*app.get('/videocall', function(req, res) {
-        res.render('videocall',{
-            pat:"placeholder"
-        });
+    app.get('/video', function(req, res) {
+        res.render('video');
     });
 
-    app.get('/chat', function(req, res) {
-        res.render('chat');
-
-    });*/
+    // app.get('/chat', function(req, res) {
+    //     res.render('chat');
+    //
+    // });
 }

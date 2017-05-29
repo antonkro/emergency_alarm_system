@@ -9,6 +9,11 @@
           content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height, target-densitydpi=device-dpi"/>
     <link rel="stylesheet" type="text/css" href="css/index.css"/>
     <meta name="msapplication-tap-highlight" content="no"/>
+
+
+    <!--<script type="text/javascript" src="js/libs/jquery-3.2.1.min.js"></script>-->
+    <!--<script type="text/javascript" src="js/index.js"></script>-->
+
     <title>Hello World</title>
 </head>
 <body>
@@ -22,30 +27,6 @@
     <button id="btnSend">Senden</button>
 </div>
 <script type="text/javascript" src="cordova.js"></script>
-<script type="text/javascript" src="js/socket.io.slim.js"></script>
-<script type="text/javascript" src="js/index.js"></script>
-
-<script type="text/javascript">
-    app.initialize();
-    var outcoming = document.getElementById("outcoming");
-
-    document.addEventListener('deviceready', function () {
-        var socket = io.connect("http://192.168.0.26:3000");
-        socket.on('connect', function () {
-
-            socket.on('text', function (text) {
-                alert(text);
-            });
-        });
-
-        document.getElementById("btnSend").addEventListener("click", function () {
-//            console.log(outcoming.value.toString());
-            socket.emit('data',outcoming.value.toString());
-        });
-
-
-    });
-
-</script>
+<script type="text/javascript" src="js/libs/bundle.js"></script>
 </body>
 </html>

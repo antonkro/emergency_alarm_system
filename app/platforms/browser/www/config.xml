@@ -1,5 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="emergency.alarm.app" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+    <feature name="PhoneRTCPlugin">
+        <param name="browser-package" value="PhoneRTCPlugin" />
+    </feature>
     <name>Emergency Alarm App</name>
     <description>
         A sample Apache Cordova application that responds to the deviceready event.

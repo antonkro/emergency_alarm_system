@@ -3,3 +3,4 @@ emergency_alarm_app/node_modules/
 **.iml
 **.v*
 **.idea
+**node_modules/
