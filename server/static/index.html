@@ -6,7 +6,13 @@
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <script src="js/libs/socket.io.js"></script>
+    <script type="text/javascript" src="js/libs/easyrtc.js"></script>
     <script src="js/index.js"></script>
+
+    <script async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAIJD2bW1i1ZKr_Z_ALfcT5aIqJU0xthOo&callback=initMap">
+    </script>
     <!--<script src="jquery-3.2.1.min.js"></script>-->
     <!--<script sindex.jsn.js"></script>-->
     <h1 id="welcome"> Willkommen zur Notfallmeldezentrale</h1>
@@ -14,6 +20,11 @@
     <style>
         body {
             padding-top: 80px;
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
         }
     </style>
 </head>
@@ -28,6 +39,7 @@
         <ul class="nav navbar-nav">
             <li  id="person_nav"><a href="#">Person</a></li>
             <li  id="contact_nav"><a href="#">Notfallkontakt</a></li>
+            <li  id="map_nav"><a href="#">Standort</a></li>
 
         </ul>
     </div>
@@ -70,6 +82,20 @@
         <div id="contact_number"></div>
 
     </div>
+</div>
+
+<div id="map">
+</div>
+
+<div id="sendMessageArea">
+    <div id="iam">Obtaining ID...</div>
+    <textarea id="sendMessageText"></textarea>
+    <div id="otherClients"></div>
+</div>
+
+<div id="receiveMessageArea">
+    Received Messages:
+    <div id="conversation"></div>
 </div>
 
 
