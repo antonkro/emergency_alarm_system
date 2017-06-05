@@ -2,14 +2,14 @@
 <html>
 
 <head>
-    <title>Notfallmeldezentrale - Übersicht</title>
+    <title style="text-align: right">Notfallmeldezentrale - Übersicht</title>
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
     <script src="js/index.js"></script>
     <!--<script src="jquery-3.2.1.min.js"></script>-->
     <!--<script sindex.jsn.js"></script>-->
-    <h1> Willkommen zur Notfallmeldezentrale</h1>
+    <h1 id="welcome"> Willkommen zur Notfallmeldezentrale</h1>
 
     <style>
         body {
@@ -19,6 +19,58 @@
 </head>
 
 <body>
+
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <a id="home_nav" class="navbar-brand" href="#">Notfallmeldezentrale</a>
+        </div>
+        <ul class="nav navbar-nav">
+            <li  id="person_nav"><a href="#">Person</a></li>
+            <li  id="contact_nav"><a href="#">Notfallkontakt</a></li>
+
+        </ul>
+    </div>
+</nav>
+<div class="panel panel-default" id="person">
+    <div class="panel-heading">Person im Notfall</div>
+    <div class="panel-body">
+        <!--<label class="badge">Person im Notfall:</label><br>-->
+        <label class="badge">Vorname:</label>
+        <div id="personsurname"></div>
+
+        <label class="badge">Nachname:</label>
+        <div id="person_name"></div>
+
+        <label class="badge">Vorerkrankung: </label>
+        <div id="person_history"></div>
+
+        <label class="badge"> Blutgruppe:</label>
+        <div id="person_bloodgroup"></div>
+    </div>
+</div>
+
+<div class="panel panel-default" id="contact">
+    <div class="panel-heading">Notfallkontakt</div>
+    <div class="panel-body">
+
+        <label class="badge">Vorname:</label>
+        <div id="contact_surname"></div>
+
+        <label class="badge">Nachname:</label>
+        <div id="contact_name"></div>
+
+        <label class="badge">Adresse:</label>
+        <div id="contact_address"></div>
+
+        <label class="badge">Ort:</label>
+        <div id="contact_city"></div>
+
+        <label class="badge">Telefonnummer:</label>
+        <div id="contact_number"></div>
+
+    </div>
+</div>
 
 
 <a href=video.html class="btn btn-default btn-sm"><span class="fa fa-video-camera"></span> Webvideo</a>
