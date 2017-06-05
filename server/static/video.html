@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>MyFirst app</title>
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+    <script src="/socket.io/socket.io.js"></script>
+    <script type="text/javascript" src="/js/libs/easyrtc.js"></script>
+    <script type="text/javascript" src="/js/video.js"></script>
+    <style>
+        video {
+            width:320px;
+            height:240px;
+        }
+        .divHolder {
+            position:relative;
+            float:left;
+            background-color: blue;
+            margin: 1px;
+        }
+    </style>
+</head>
+<body>
+<!--<button onclick = "connect();"> Connect to server</button>-->
+<div id="otherClients">Peers:</div>
+<table>y
+
+<tr>
+
+<td><div>
+    <div class="divHolder">
+        <video autoplay="autoplay" class="easyrtcMirror" id="selfVideo" muted="muted" volume="0" ></video>
+    </div>
+
+    <div class="divHolder">
+        <video autoplay="autoplay" id="callerVideo1"></video>
+    </div>
+</div></td>
+</tr>
+    <tr>
+<td><a href=index.html class="btn btn-default btn-sm"><span class="fa fa-backward"></span> Zurück</a></td>
+    </tr>
+</table>
+</body>
+</html>
