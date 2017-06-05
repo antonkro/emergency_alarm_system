@@ -1,5 +1,4 @@
-emergency_alarm_center/node_modules/
-emergency_alarm_app/node_modules/
+emergency_alarm_center.v*
 **.iml
 **.v*
 **.idea
