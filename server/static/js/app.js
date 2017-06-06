@@ -15,8 +15,10 @@ function loginFailure(errorCode, message) {
 }
 
 function sendData(roomName, occupants, isPrimary){
-    var personenDaten = "test";
+    var personenDaten = android.getPersonenDaten();
+    var kontaktdaten = android.getNotfallKontakt();
+    var location = "{lat:'48.77930', lng:'9.10717'}";
     for (var easyrtcid in occupants){
-        easyrtc.sendDataWS(easyrtcid, "message", personenDaten);
+        easyrtc.sendDataWS(easyrtcid, "message", personenDaten,kontaktdaten,location);
     }
 }
