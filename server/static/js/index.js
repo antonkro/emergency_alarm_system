@@ -92,7 +92,7 @@ function addData(who, msgType, content) {
     // Escape html special characters, then add linefeeds.
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
-
+    console.log(content);
     person_surname.innerHTML="";
     person_name.innerHTML="";
     person_history.innerHTML="";
@@ -113,7 +113,7 @@ function addData(who, msgType, content) {
 
 function connect() {
     easyrtc.setPeerListener(addData);
-    easyrtc.setRoomOccupantListener(convertListToButtons);
+    // easyrtc.setRoomOccupantListener(convertListToButtons);
     easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
 }
 
