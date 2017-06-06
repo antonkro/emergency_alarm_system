@@ -8,6 +8,17 @@ function init() {
     var contact_nav = document.getElementById("contact_nav");
     var map_nav = document.getElementById("map_nav");
 
+    var person_surname = document.getElementById("person_surname");
+    var person_name = document.getElementById("person_name");
+    var person_history = document.getElementById("person_history");
+    var person_bloodgroup = document.getElementById("person_bloodgroup");
+
+    var contact_surname = document.getElementById("contact_surname");
+    var contact_name = document.getElementById("contact_name");
+    var contact_address = document.getElementById("contact_address");
+    var contact_city = document.getElementById("contact_city");
+    var contact_number = document.getElementById("contact_number");
+
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
 
@@ -76,16 +87,7 @@ function initMap() {
 
 
 //easyrtc functions
-var person_surname = document.getElementById("person_surname");
-var person_name = document.getElementById("person_name");
-var person_history = document.getElementById("person_history");
-var person_bloodgroup = document.getElementById("person_bloodgroup");
 
-var contact_surname = document.getElementById("contact_surname");
-var contact_name = document.getElementById("contact_name");
-var contact_address = document.getElementById("contact_address");
-var contact_city = document.getElementById("contact_city");
-var contact_number = document.getElementById("contact_number");
 
 
 function addData(who, msgType, content) {

@@ -14,9 +14,9 @@ function loginFailure(errorCode, message) {
     easyrtc.showError(errorCode, message);
 }
 
-function sendData(occupants){
-    var personenDaten = Android.getPersonenDaten;
+function sendData(roomName, occupants, isPrimary){
+    var personenDaten = "test";
     for (var easyrtcid in occupants){
-        easyrtc.senDataWS(id, "message", personenDaten);        
+        easyrtc.sendDataWS(easyrtcid, "message", personenDaten);
     }
 }
