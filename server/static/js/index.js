@@ -91,11 +91,12 @@ function initMap() {
 
 
 
-function addData(who, msgType, data) {
+function addData(who, msgType, str) {
     // Escape html special characters, then add linefeeds.
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
-    console.log(data);
+    console.log(str);
+    var data = JSON.parse(str);
 
     person_surname.innerHTML=data.person.surename;
     person_name.innerHTML=data.person.name;
@@ -108,12 +109,14 @@ function addData(who, msgType, data) {
     contact_city.innerHTML=data.contact.city;
     contact_number.innerHTML=data.contact.phone;
 
-
+    var uluru = {lat: parseFloat(data.location.lat), lng: parseFloat(data.location.lng)};
     var marker = new google.maps.Marker({
-        position: data.location,
-        title:"Standort der Person im Notfall"
+        position: uluru,
+        title:"Standort der Person im Notfall",
+        map:map
     });
     marker.setMap(map);
+    google.maps.event.trigger(map, "resize");
 
     // document.getElementById('conversation').innerHTML +=
     //     "<b>" + who + ":</b>&nbsp;" + content + "<br />";
