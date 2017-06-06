@@ -15,7 +15,7 @@ function loginFailure(errorCode, message) {
 }
 
 function mergeAllData(personenDaten, notfallkontakt, location){
-   var alldata = '{"person" : '+personenDaten + ', "contact" : ' + notfallkontakt + ', "location" : '+location+ '}';
+   var alldata = '{"person" : ['+personenDaten + '], "contact" : [' + notfallkontakt + '], "location" : ['+location+ ']}';
    
     return alldata;
 }
