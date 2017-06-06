@@ -109,9 +109,9 @@ function addData(who, msgType, str) {
     contact_city.innerHTML=data.contact.city;
     contact_number.innerHTML=data.contact.phone;
 
-
+    var uluru = {lat: parseFloat(data.location.lat), lng: parseFloat(data.location.lng)};
     var marker = new google.maps.Marker({
-        position: data.location,
+        position: uluru,
         title:"Standort der Person im Notfall"
     });
     marker.setMap(map);
