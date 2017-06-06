@@ -19,6 +19,7 @@ function init() {
     var contact_city = document.getElementById("contact_city");
     var contact_number = document.getElementById("contact_number");
 
+    var map=null;
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
 
@@ -72,15 +73,15 @@ function init() {
 document.addEventListener('DOMContentLoaded', init, false);
 
 function initMap() {
-    var uluru = {lat: 48.779301, lng: 9.1071757};
-    var map = new google.maps.Map(document.getElementById('map'), {
+    // var uluru = {lat: 48.779301, lng: 9.1071757};
+    map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
-        center: uluru
+        // center: uluru
     });
-    var marker = new google.maps.Marker({
-        position: uluru,
-        map: map
-    });
+    // var marker = new google.maps.Marker({
+    //     position: uluru,
+    //     map: map
+    // });
 
 
 }
@@ -90,23 +91,31 @@ function initMap() {
 
 
 
-function addData(who, msgType, content) {
+function addData(who, msgType, personData,contactData,location) {
     // Escape html special characters, then add linefeeds.
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
-    console.log(content);
-    person_surname.innerHTML="";
-    person_name.innerHTML="";
-    person_history.innerHTML="";
-    person_bloodgroup.innerHTML="";
+    console.log(personData);
+    console.log(contactData);
+    console.log(location);
 
-    contact_surname.innerHTML="";
-    contact_name.innerHTML="";
-    contact_address.innerHTML="";
-    contact_city.innerHTML="";
-    contact_number.innerHTML="";
+    person_surname.innerHTML=personData.surename;
+    person_name.innerHTML=personData.name;
+    person_history.innerHTML=personData.illness;
+    person_bloodgroup.innerHTML=personData.bloodgroup;
+
+    contact_surname.innerHTML=contactData.surname;
+    contact_name.innerHTML=contactData.name;
+    contact_address.innerHTML=contactData.street;
+    contact_city.innerHTML=contactData.city;
+    contact_number.innerHTML=contactData.phone;
 
 
+    var marker = new google.maps.Marker({
+        position: location,
+        title:"Standort der Person im Notfall"
+    });
+    marker.setMap(map);
 
     // document.getElementById('conversation').innerHTML +=
     //     "<b>" + who + ":</b>&nbsp;" + content + "<br />";
