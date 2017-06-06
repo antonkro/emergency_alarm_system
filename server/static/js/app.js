@@ -14,8 +14,8 @@ function loginFailure(errorCode, message) {
     easyrtc.showError(errorCode, message);
 }
 
-function mergAllData(personenDaten, notfallkontakt, location){
-   var alldata = "{'person':"+personenDaten + ", 'contact': " + notfallkontakt + ", 'location: '"+location+ "}";
+function mergeAllData(personenDaten, notfallkontakt, location){
+   var alldata = '{"person" : '+personenDaten + ', "contact" : ' + notfallkontakt + ', "location" : '+location+ '}';
    
     return alldata;
 }
@@ -24,8 +24,8 @@ function sendData(roomName, occupants, isPrimary){
     //var personenDaten = android.getPersonenDaten();
     //var kontaktdaten = android.getNotfallKontakt();
 
-    var location = "{lat:'48.77930', lng:'9.10717'}";
-    var data = mergAllData(android.getPersonenDaten(), android.getNotfallKontakt(), location)
+    var location = '{"lat":"48.77930", "lng":"9.10717"}';
+    var data = mergeAllData(android.getPersonenDaten(), android.getNotfallKontakt(), location)
     for (var easyrtcid in occupants){
         easyrtc.sendDataWS(easyrtcid, "message", data );
     }
