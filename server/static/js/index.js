@@ -112,7 +112,8 @@ function addData(who, msgType, str) {
     var uluru = {lat: parseFloat(data.location.lat), lng: parseFloat(data.location.lng)};
     var marker = new google.maps.Marker({
         position: uluru,
-        title:"Standort der Person im Notfall"
+        title:"Standort der Person im Notfall",
+        map:map
     });
     marker.setMap(map);
     google.maps.event.trigger(map, "resize");
