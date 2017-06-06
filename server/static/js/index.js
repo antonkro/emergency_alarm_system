@@ -115,6 +115,7 @@ function addData(who, msgType, str) {
         title:"Standort der Person im Notfall"
     });
     marker.setMap(map);
+    google.maps.event.trigger(map, "resize");
 
     // document.getElementById('conversation').innerHTML +=
     //     "<b>" + who + ":</b>&nbsp;" + content + "<br />";
