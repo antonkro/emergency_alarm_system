@@ -14,8 +14,8 @@ function loginFailure(errorCode, message) {
     easyrtc.showError(errorCode, message);
 }
 
-function mergAllData(personenDaten, notfallkontakt, location){
-   var alldata = "{'person':"+personenDaten + ", 'contact': " + notfallkontakt + ", 'location: '"+location+ "}";
+function mergeAllData(personenDaten, notfallkontakt, location){
+   var alldata = '{"person" : '+personenDaten + ', "contact" : ' + notfallkontakt + ', "location" : '+location+ '}';
    
     return alldata;
 }
