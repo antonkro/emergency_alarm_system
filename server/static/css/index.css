@@ -1,0 +1,23 @@
+body {
+    padding-top: 80px;
+}
+
+div {
+}
+
+#map {
+    width: 100%;
+    height: 400px;
+}
+
+video {
+    width: 100%;
+    height: 400px;
+}
+
+.divHolder {
+    position: inherit;
+    /*float: left;*/
+    background-color: gray;
+    /*margin: 1px;*/
+}

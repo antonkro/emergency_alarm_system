@@ -11,46 +11,47 @@ function init() {
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
 
-    person.style.display = 'none';
-    contact.style.display = 'none';
-    map.style.display = 'none';
-
-    document.getElementById("person_nav").addEventListener("click", function () {
-        person.style.display = 'block';
-        contact.style.display = 'none';
-        map.style.display = 'none';
-        document.getElementById('person_nav').className = 'active';
-        document.getElementById('contact_nav').className = '';
-        document.getElementById('map_nav').className = '';
-
-    });
-
-    document.getElementById("contact_nav").addEventListener("click", function () {
-        person.style.display = 'none';
-        map.style.display = 'none';
-        contact.style.display = 'block';
-        document.getElementById('person_nav').className = '';
-        document.getElementById('map_nav').className = '';
-        document.getElementById('contact_nav').className = 'active';
-    });
-
-    document.getElementById("home_nav").addEventListener("click", function () {
-        person.style.display = 'none';
-        contact.style.display = 'none';
-        map.style.display = 'none';
-        document.getElementById('person_nav').className = '';
-        document.getElementById('contact_nav').className = '';
-        document.getElementById('map_nav').className = '';
-    });
-
-    document.getElementById("map_nav").addEventListener("click", function () {
-        person.style.display = 'none';
-        contact.style.display = 'none';
-        map.style.display = 'block';
-        document.getElementById('person_nav').className = '';
-        document.getElementById('contact_nav').className = '';
-        document.getElementById('map_nav').className = 'active';
-    });
+    // person.style.display = 'none';
+    // contact.style.display = 'none';
+    // map.style.display = 'none';
+    //
+    // document.getElementById("person_nav").addEventListener("click", function () {
+    //     person.style.display = 'block';
+    //     contact.style.display = 'none';
+    //     map.style.display = 'none';
+    //     document.getElementById('person_nav').className = 'active';
+    //     document.getElementById('contact_nav').className = '';
+    //     document.getElementById('map_nav').className = '';
+    //
+    // });
+    //
+    // document.getElementById("contact_nav").addEventListener("click", function () {
+    //     person.style.display = 'none';
+    //     map.style.display = 'none';
+    //     contact.style.display = 'block';
+    //     document.getElementById('person_nav').className = '';
+    //     document.getElementById('map_nav').className = '';
+    //     document.getElementById('contact_nav').className = 'active';
+    // });
+    //
+    // document.getElementById("home_nav").addEventListener("click", function () {
+    //     person.style.display = 'none';
+    //     contact.style.display = 'none';
+    //     map.style.display = 'none';
+    //     document.getElementById('person_nav').className = '';
+    //     document.getElementById('contact_nav').className = '';
+    //     document.getElementById('map_nav').className = '';
+    // });
+    //
+    // document.getElementById("map_nav").addEventListener("click", function () {
+    //     person.style.display = 'none';
+    //     contact.style.display = 'none';
+    //     map.style.display = 'block';
+    //     document.getElementById('person_nav').className = '';
+    //     document.getElementById('contact_nav').className = '';
+    //     document.getElementById('map_nav').className = 'active';
+    //     google.maps.event.trigger(map, "resize");
+    // });
 
 
     var selfEasyrtcid = "";
@@ -69,21 +70,49 @@ function initMap() {
         position: uluru,
         map: map
     });
+
+
 }
 
 
 //easyrtc functions
-function addToConversation(who, msgType, content) {
+var person_surname = document.getElementById("person_surname");
+var person_name = document.getElementById("person_name");
+var person_history = document.getElementById("person_history");
+var person_bloodgroup = document.getElementById("person_bloodgroup");
+
+var contact_surname = document.getElementById("contact_surname");
+var contact_name = document.getElementById("contact_name");
+var contact_address = document.getElementById("contact_address");
+var contact_city = document.getElementById("contact_city");
+var contact_number = document.getElementById("contact_number");
+
+
+function addData(who, msgType, content) {
     // Escape html special characters, then add linefeeds.
-    content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
-    content = content.replace(/\n/g, '<br />');
-    document.getElementById('conversation').innerHTML +=
-        "<b>" + who + ":</b>&nbsp;" + content + "<br />";
+    // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+    // content = content.replace(/\n/g, '<br />');
+
+    person_surname.innerHTML="";
+    person_name.innerHTML="";
+    person_history.innerHTML="";
+    person_bloodgroup.innerHTML="";
+
+    contact_surname.innerHTML="";
+    contact_name.innerHTML="";
+    contact_address.innerHTML="";
+    contact_city.innerHTML="";
+    contact_number.innerHTML="";
+
+
+
+    // document.getElementById('conversation').innerHTML +=
+    //     "<b>" + who + ":</b>&nbsp;" + content + "<br />";
 }
 
 
 function connect() {
-    easyrtc.setPeerListener(addToConversation);
+    easyrtc.setPeerListener(addData);
     easyrtc.setRoomOccupantListener(convertListToButtons);
     easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
 }
@@ -128,7 +157,7 @@ function sendStuffWS(otherEasyrtcid) {
     }
 
     easyrtc.sendDataWS(otherEasyrtcid, "message", text);
-    addToConversation("Me", "message", text);
+    addData("Me", "message", text);
     document.getElementById('sendMessageText').value = "";
 }
 

@@ -6,6 +6,7 @@
 
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
+    <link rel="stylesheet" href="css/index.css">
     <script src="js/libs/socket.io.js"></script>
     <script type="text/javascript" src="js/libs/easyrtc.js"></script>
     <script src="js/index.js"></script>
@@ -18,88 +19,100 @@
     <h1 id="welcome"> Willkommen zur Notfallmeldezentrale</h1>
 
     <style>
-        body {
-            padding-top: 80px;
-        }
 
-        #map {
-            height: 400px;
-            width: 100%;
-        }
     </style>
 </head>
 
 <body>
 
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <a id="home_nav" class="navbar-brand" href="#">Notfallmeldezentrale</a>
+<!--<nav class="navbar navbar-default">-->
+<!--<div class="container-fluid">-->
+<!--<div class="navbar-header">-->
+<!--<a id="home_nav" class="navbar-brand" href="#">Notfallmeldezentrale</a>-->
+<!--</div>-->
+<!--<ul class="nav navbar-nav">-->
+<!--<li  id="person_nav"><a href="#">Person</a></li>-->
+<!--<li  id="contact_nav"><a href="#">Notfallkontakt</a></li>-->
+<!--<li  id="map_nav"><a href="#">Standort</a></li>-->
+
+<!--</ul>-->
+<!--</div>-->
+<!--</nav>-->
+<div class="row">
+    <div class="col-sm-4">
+        <div class="divHolder">
+            <video autoplay="autoplay" id="callerVideo1"></video>
         </div>
-        <ul class="nav navbar-nav">
-            <li  id="person_nav"><a href="#">Person</a></li>
-            <li  id="contact_nav"><a href="#">Notfallkontakt</a></li>
-            <li  id="map_nav"><a href="#">Standort</a></li>
-
-        </ul>
     </div>
-</nav>
-<div class="panel panel-default" id="person">
-    <div class="panel-heading">Person im Notfall</div>
-    <div class="panel-body">
-        <!--<label class="badge">Person im Notfall:</label><br>-->
-        <label class="badge">Vorname:</label>
-        <div id="personsurname"></div>
 
-        <label class="badge">Nachname:</label>
-        <div id="person_name"></div>
 
-        <label class="badge">Vorerkrankung: </label>
-        <div id="person_history"></div>
-
-        <label class="badge"> Blutgruppe:</label>
-        <div id="person_bloodgroup"></div>
+    <div class="col-sm-4">
+        <div id="map">
+        </div>
     </div>
 </div>
+<br>
+<div class="row">
+    <div class="col-sm-4">
+        <div class="panel panel-default" id="person">
+            <div class="panel-heading">Person im Notfall</div>
+            <div class="panel-body">
+                <!--<label class="badge">Person im Notfall:</label><br>-->
+                <label class="badge">Vorname:</label>
+                <div id="person_surname"></div>
 
-<div class="panel panel-default" id="contact">
-    <div class="panel-heading">Notfallkontakt</div>
-    <div class="panel-body">
+                <label class="badge">Nachname:</label>
+                <div id="person_name"></div>
 
-        <label class="badge">Vorname:</label>
-        <div id="contact_surname"></div>
+                <label class="badge">Vorerkrankung: </label>
+                <div id="person_history"></div>
 
-        <label class="badge">Nachname:</label>
-        <div id="contact_name"></div>
+                <label class="badge"> Blutgruppe:</label>
+                <div id="person_bloodgroup"></div>
+            </div>
+        </div>
+    </div>
 
-        <label class="badge">Adresse:</label>
-        <div id="contact_address"></div>
 
-        <label class="badge">Ort:</label>
-        <div id="contact_city"></div>
+    <div class="col-sm-4">
+        <div class="panel panel-default" id="contact">
+            <div class="panel-heading">Notfallkontakt</div>
+            <div class="panel-body">
 
-        <label class="badge">Telefonnummer:</label>
-        <div id="contact_number"></div>
+                <label class="badge">Vorname:</label>
+                <div id="contact_surname"></div>
 
+                <label class="badge">Nachname:</label>
+                <div id="contact_name"></div>
+
+                <label class="badge">Adresse:</label>
+                <div id="contact_address"></div>
+
+                <label class="badge">Ort:</label>
+                <div id="contact_city"></div>
+
+                <label class="badge">Telefonnummer:</label>
+                <div id="contact_number"></div>
+
+            </div>
+        </div>
     </div>
 </div>
 
-<div id="map">
-</div>
 
-<div id="sendMessageArea">
-    <div id="iam">Obtaining ID...</div>
-    <textarea id="sendMessageText"></textarea>
-    <div id="otherClients"></div>
-</div>
+<!--<div id="sendMessageArea">-->
+    <!--<div id="iam">Obtaining ID...</div>-->
+    <!--<textarea id="sendMessageText"></textarea>-->
+    <!--<div id="otherClients"></div>-->
+<!--</div>-->
 
-<div id="receiveMessageArea">
-    Received Messages:
-    <div id="conversation"></div>
-</div>
+<!--<div id="receiveMessageArea">-->
+    <!--Received Messages:-->
+    <!--<div id="conversation"></div>-->
+<!--</div>-->
 
 
-<a href=video.html class="btn btn-default btn-sm"><span class="fa fa-video-camera"></span> Webvideo</a>
+<!--<a href=video.html class="btn btn-default btn-sm"><span class="fa fa-video-camera"></span> Webvideo</a>-->
 
 </body>
 
