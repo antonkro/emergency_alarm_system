@@ -91,11 +91,12 @@ function initMap() {
 
 
 
-function addData(who, msgType, data) {
+function addData(who, msgType, str) {
     // Escape html special characters, then add linefeeds.
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
-    console.log(data);
+    console.log(str);
+    var data = JSON.parse(str);
 
     person_surname.innerHTML=data.person.surename;
     person_name.innerHTML=data.person.name;
