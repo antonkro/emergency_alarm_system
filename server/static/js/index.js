@@ -91,28 +91,26 @@ function initMap() {
 
 
 
-function addData(who, msgType, personData,contactData,location) {
+function addData(who, msgType, data) {
     // Escape html special characters, then add linefeeds.
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
-    console.log(personData);
-    console.log(contactData);
-    console.log(location);
+    console.log(data);
 
-    person_surname.innerHTML=personData.surename;
-    person_name.innerHTML=personData.name;
-    person_history.innerHTML=personData.illness;
-    person_bloodgroup.innerHTML=personData.bloodgroup;
+    person_surname.innerHTML=data.person.surename;
+    person_name.innerHTML=data.person.name;
+    person_history.innerHTML=data.person.illness;
+    person_bloodgroup.innerHTML=data.person.bloodgroup;
 
-    contact_surname.innerHTML=contactData.surname;
-    contact_name.innerHTML=contactData.name;
-    contact_address.innerHTML=contactData.street;
-    contact_city.innerHTML=contactData.city;
-    contact_number.innerHTML=contactData.phone;
+    contact_surname.innerHTML=data.contact.surname;
+    contact_name.innerHTML=data.contact.name;
+    contact_address.innerHTML=data.contact.street;
+    contact_city.innerHTML=data.contact.city;
+    contact_number.innerHTML=data.contact.phone;
 
 
     var marker = new google.maps.Marker({
-        position: location,
+        position: data.location,
         title:"Standort der Person im Notfall"
     });
     marker.setMap(map);
