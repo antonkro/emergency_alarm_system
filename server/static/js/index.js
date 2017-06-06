@@ -1,8 +1,6 @@
 function init() {
     var person = document.getElementById("person");
     var contact = document.getElementById("contact");
-    var map = document.getElementById("map");
-
 
     var person_nav = document.getElementById("person_nav");
     var contact_nav = document.getElementById("contact_nav");
@@ -19,7 +17,7 @@ function init() {
     var contact_city = document.getElementById("contact_city");
     var contact_number = document.getElementById("contact_number");
 
-    var map=null;
+
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
 
@@ -72,23 +70,27 @@ function init() {
 }
 document.addEventListener('DOMContentLoaded', init, false);
 
-function initMap() {
-    // var uluru = {lat: 48.779301, lng: 9.1071757};
+//
+function initMap(markerLocation) {
+    var uluru = {lat: 48.779301, lng: 9.1071757};
     map = new google.maps.Map(document.getElementById('map'), {
         zoom: 4,
-        // center: uluru
+        center: uluru
     });
-    // var marker = new google.maps.Marker({
-    //     position: uluru,
-    //     map: map
-    // });
+    marker = new google.maps.Marker({
+        position:markerLocation,
+        map: map,
+        title: 'Standort der Person im Notfall'
 
-
+    });
 }
 
 
 //easyrtc functions
-
+function marks(local) {
+    local ={lat:parseFloat(local.lat),lng : parseFloat(local.lng)};
+    initMap(local);
+}
 
 
 function addData(who, msgType, str) {
@@ -98,25 +100,18 @@ function addData(who, msgType, str) {
     console.log(str);
     var data = JSON.parse(str);
 
-    person_surname.innerHTML=data.person.surename;
-    person_name.innerHTML=data.person.name;
-    person_history.innerHTML=data.person.illness;
-    person_bloodgroup.innerHTML=data.person.bloodgroup;
+    person_surname.innerHTML = data.person.surename;
+    person_name.innerHTML = data.person.name;
+    person_history.innerHTML = data.person.illness;
+    person_bloodgroup.innerHTML = data.person.bloodgroup;
 
-    contact_surname.innerHTML=data.contact.surname;
-    contact_name.innerHTML=data.contact.name;
-    contact_address.innerHTML=data.contact.street;
-    contact_city.innerHTML=data.contact.city;
-    contact_number.innerHTML=data.contact.phone;
+    contact_surname.innerHTML = data.contact.surname;
+    contact_name.innerHTML = data.contact.name;
+    contact_address.innerHTML = data.contact.street;
+    contact_city.innerHTML = data.contact.city;
+    contact_number.innerHTML = data.contact.phone;
 
-    var uluru = {lat: parseFloat(data.location.lat), lng: parseFloat(data.location.lng)};
-    var marker = new google.maps.Marker({
-        position: uluru,
-        title:"Standort der Person im Notfall",
-        map:map
-    });
-    marker.setMap(map);
-    google.maps.event.trigger(map, "resize");
+    marks(data.location);
 
     // document.getElementById('conversation').innerHTML +=
     //     "<b>" + who + ":</b>&nbsp;" + content + "<br />";
