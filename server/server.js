@@ -8,8 +8,8 @@ var easyrtc = require("easyrtc");               // EasyRTC external module
 
 // This line is from the Node.js HTTPS documentation.
 var options = {
-    key: fs.readFileSync('key.pem'),
-    cert: fs.readFileSync('cert.pem')
+    key: fs.readFileSync('certs/privkey.pem'),
+    cert: fs.readFileSync('certs/cert.pem')
 };
 // require(__dirname + '/ice.js')(easyrtc);
 
