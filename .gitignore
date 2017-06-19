@@ -6,3 +6,13 @@ emergency_alarm_center.v*
 **.old
 server/certs
 **.pem
+**build/
+**.gradle
+app/local.properties
+app/.DS_Store
+app/captures
+app/.externalNativeBuild
+app/gradlew
+
+
+
