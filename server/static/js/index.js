@@ -18,7 +18,7 @@ function init() {
     var contact_number = document.getElementById("contact_number");
     var client = null;
     var callBtn = document.getElementById("callBtn");
-    callBtn.disabled=true;
+    callBtn.disabled = true;
 
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
@@ -106,8 +106,8 @@ function addData(who, msgType, str) {
     // Escape html special characters, then add linefeeds.
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
-    client=who;
-    callBtn.disabled=false;
+    client = who;
+    callBtn.disabled = false;
     console.log(client);
     console.log("before parse: " + str);
     // str= str.replace("ü", "&uuml");
@@ -140,54 +140,57 @@ function connect() {
     // easyrtc.connect("easyrtc.audioVideoSimple", ["callerVideo1"], loginSuccess, loginFailure);
 
 
-function loginSuccess(easyrtcid) {
-    selfEasyrtcid = easyrtcid;
-    console.log("I am " + easyrtcid);
-}
-
-
-function loginFailure(errorCode, message) {
-    easyrtc.showError(errorCode, message);
-}
-
-function convertListToButtons(roomName, occupants, isPrimary) {
-    var otherClientDiv = document.getElementById('otherClients');
-    while (otherClientDiv.hasChildNodes()) {
-        otherClientDiv.removeChild(otherClientDiv.lastChild);
+    function loginSuccess(easyrtcid) {
+        selfEasyrtcid = easyrtcid;
+        console.log("I am " + easyrtcid);
     }
 
-    for (var easyrtcid in occupants) {
-        var button = document.createElement('button');
-        button.onclick = function (easyrtcid) {
-            return function () {
-                sendStuffWS(easyrtcid);
-            };
-        }(easyrtcid);
-        var label = document.createTextNode("Send to " + easyrtc.idToName(easyrtcid));
-        button.appendChild(label);
 
-        otherClientDiv.appendChild(button);
-    }
-    if (!otherClientDiv.hasChildNodes()) {
-        otherClientDiv.innerHTML = "<em>Nobody else logged in to talk to...</em>";
-    }
-}
-
-function sendStuffWS(otherEasyrtcid) {
-    var text = document.getElementById('sendMessageText').value;
-    if (text.replace(/\s/g, "").length === 0) { // Don't send just whitespace
-        return;
+    function loginFailure(errorCode, message) {
+        easyrtc.showError(errorCode, message);
     }
 
-    easyrtc.sendDataWS(otherEasyrtcid, "message", text);
-    addData("Me", "message", text);
-    document.getElementById('sendMessageText').value = "";
-}
+    function convertListToButtons(roomName, occupants, isPrimary) {
+        var otherClientDiv = document.getElementById('otherClients');
+        while (otherClientDiv.hasChildNodes()) {
+            otherClientDiv.removeChild(otherClientDiv.lastChild);
+        }
 
-function performCall() {
-    var successCB = function() {};
-    var failureCB = function() {};
-    easyrtc.call(client, successCB, failureCB);
+        for (var easyrtcid in occupants) {
+            var button = document.createElement('button');
+            button.onclick = function (easyrtcid) {
+                return function () {
+                    sendStuffWS(easyrtcid);
+                };
+            }(easyrtcid);
+            var label = document.createTextNode("Send to " + easyrtc.idToName(easyrtcid));
+            button.appendChild(label);
+
+            otherClientDiv.appendChild(button);
+        }
+        if (!otherClientDiv.hasChildNodes()) {
+            otherClientDiv.innerHTML = "<em>Nobody else logged in to talk to...</em>";
+        }
+    }
+
+    function sendStuffWS(otherEasyrtcid) {
+        var text = document.getElementById('sendMessageText').value;
+        if (text.replace(/\s/g, "").length === 0) { // Don't send just whitespace
+            return;
+        }
+
+        easyrtc.sendDataWS(otherEasyrtcid, "message", text);
+        addData("Me", "message", text);
+        document.getElementById('sendMessageText').value = "";
+    }
+
+    function performCall() {
+        var successCB = function () {
+        };
+        var failureCB = function () {
+        };
+        easyrtc.call(client, successCB, failureCB);
+    }
 }
 
 
