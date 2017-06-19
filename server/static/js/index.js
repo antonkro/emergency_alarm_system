@@ -98,7 +98,7 @@ function addData(who, msgType, str) {
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
     console.log(str);
-    var data = JSON.parse(str);
+    var data = JSON.parse(encodeURIComponent(str));
 
     person_surname.innerHTML = data.person.surename;
     person_name.innerHTML = data.person.name;
