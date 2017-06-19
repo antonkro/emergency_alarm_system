@@ -25,7 +25,7 @@ function sendData(roomName, occupants, isPrimary){
     //var kontaktdaten = android.getNotfallKontakt();
 
     //var location = '{"lat":"48.77930", "lng":"9.10717"}';
-    var loaction = android.getPostition();
+    var loaction = android.getPosition();
     var data = mergeAllData(android.getPersonenDaten(), android.getNotfallKontakt(), location)
     for (var easyrtcid in occupants){
         easyrtc.sendDataWS(easyrtcid, "message", data );
