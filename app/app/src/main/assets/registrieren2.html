@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <script src="main.js"></script>
+        <script>
+             function myFunction(){
+                var data = JSON.stringify(
+                    {
+                        "name":document.getElementById("field1").value,
+                        "surename":document.getElementById("field2").value,
+                        "street":document.getElementById("field3").value,
+                        "city":document.getElementById("field4").value,
+                        "phone":document.getElementById("field5").value
+                    });
+                android.safeDataKontakt(data);
+                window.location = "https://h2695541.stratoserver.net/app.html";
+             }
+        </script>
+        <link rel="stylesheet" href="stylesheet.css">
+        <div class="form-style-6">
+            <h1>Registrieren</h1>
+            <form>
+                <input type="text" id="field1" placeholder="Name Notfallkontakt" />
+                <input type="text" id="field2" placeholder="Nachname Notfallkontakt" />
+                <input type="text" id="field3" placeholder="Straße / Hausnummer" />
+                <input type="text" id="field4" placeholder="Ort" />
+                <input type="text" id="field5" placeholder="Telefonnummer" />
+            </form>
+            <button id="button" onclick="myFunction()">registrieren</button>
+        </div>
+    </body>
+</html>
