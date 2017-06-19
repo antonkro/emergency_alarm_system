@@ -17,6 +17,8 @@ function init() {
     var contact_city = document.getElementById("contact_city");
     var contact_number = document.getElementById("contact_number");
     var client = null;
+    var callBtn = document.getElementById("callBtn");
+    callBtn.disabled=true;
 
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
@@ -105,6 +107,7 @@ function addData(who, msgType, str) {
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
     client=who;
+    callBtn.disabled=false;
     console.log(client);
     console.log("before parse: " + str);
     // str= str.replace("ü", "&uuml");
@@ -133,9 +136,9 @@ function connect() {
     easyrtc.setPeerListener(addData);
     // easyrtc.setRoomOccupantListener(convertListToButtons);
 
-    //easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
-    easyrtc.connect("easyrtc.audioVideoSimple", ["callerVideo1"], loginSuccess, loginFailure);
-}
+    easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
+    // easyrtc.connect("easyrtc.audioVideoSimple", ["callerVideo1"], loginSuccess, loginFailure);
+
 
 function loginSuccess(easyrtcid) {
     selfEasyrtcid = easyrtcid;
@@ -180,5 +183,12 @@ function sendStuffWS(otherEasyrtcid) {
     addData("Me", "message", text);
     document.getElementById('sendMessageText').value = "";
 }
+
+function performCall() {
+    var successCB = function() {};
+    var failureCB = function() {};
+    easyrtc.call(client, successCB, failureCB);
+}
+
 
 
