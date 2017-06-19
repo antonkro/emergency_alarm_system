@@ -68,6 +68,13 @@ function init() {
     connect();
 
 }
+function test(){
+    var s = '{"person" : {"name":"Donat","surename":"Balasar","illness":"Keine","bloodgroup":"A"}, "contact" : {"name":"Peter","surename":"Rüdiger","street":"Kanonenweg 2","city":"Reutlingen","phone":"015789677854"}, "location" : {"lat":"48.77930", "lng":"9.10717"}}'
+    addData("","",s);
+
+}
+
+
 document.addEventListener('DOMContentLoaded', init, false);
 
 //
@@ -97,19 +104,21 @@ function addData(who, msgType, str) {
     // Escape html special characters, then add linefeeds.
     // content = content.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
     // content = content.replace(/\n/g, '<br />');
-    console.log(str);
-    var data = JSON.parse(encodeURIComponent(str));
+    console.log("before parse: "+str);
+    // str= str.replace("ü", "&uuml");
+    // console.log("after parse: "+str);
 
-    person_surname.innerHTML = data.person.surename;
-    person_name.innerHTML = data.person.name;
-    person_history.innerHTML = data.person.illness;
-    person_bloodgroup.innerHTML = data.person.bloodgroup;
+    var data = JSON.parse(str);
+    person_surname.innerHTML = data.person.surename.toString();
+    person_name.innerHTML = data.person.name.toString();
+    person_history.innerHTML = data.person.illness.toString();
+    person_bloodgroup.innerHTML = data.person.bloodgroup.toString();
 
-    contact_surname.innerHTML = data.contact.surname;
-    contact_name.innerHTML = data.contact.name;
-    contact_address.innerHTML = data.contact.street;
-    contact_city.innerHTML = data.contact.city;
-    contact_number.innerHTML = data.contact.phone;
+    contact_surname.innerHTML = data.contact.surename.toString();
+    contact_name.innerHTML = data.contact.name.toString();
+    contact_address.innerHTML = data.contact.street.toString();
+    contact_city.innerHTML = data.contact.city.toString();
+    contact_number.innerHTML = data.contact.phone.toString();
 
     marks(data.location);
 

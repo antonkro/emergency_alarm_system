@@ -1,0 +1,8 @@
+emergency_alarm_center.v*
+**.iml
+**.v*
+**.idea
+**node_modules
+**.old
+server/certs
+**.pem
