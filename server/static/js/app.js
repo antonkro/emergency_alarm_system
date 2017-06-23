@@ -1,6 +1,8 @@
 function connect() {
+    easyrtc.disconnect();
     easyrtc.setPeerListener();
     easyrtc.setRoomOccupantListener(sendData);
+
     easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
 }
 
