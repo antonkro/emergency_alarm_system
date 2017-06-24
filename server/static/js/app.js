@@ -1,5 +1,4 @@
 function connect() {
-    easyrtc.disconnect();
     easyrtc.setPeerListener();
     easyrtc.setRoomOccupantListener(sendData);
 
