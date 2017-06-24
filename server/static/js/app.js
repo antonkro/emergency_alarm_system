@@ -1,8 +1,8 @@
-function connect() {
-    easyrtc.setPeerListener();
-    easyrtc.setRoomOccupantListener(sendData);
+function click() {
+    easyrtc.disconnect();
+    easyrtc.connect();
 
-    easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
+
 }
 
 function loginSuccess(easyrtcid) {
@@ -31,4 +31,13 @@ function sendData(roomName, occupants, isPrimary){
     for (var easyrtcid in occupants){
         easyrtc.sendDataWS(easyrtcid, "message", data );
     }
+}
+
+
+document.addEventListener('DOMContentLoaded', init, false);
+
+function init(){
+    easyrtc.setPeerListener();
+    easyrtc.setRoomOccupantListener(sendData);
+    // easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
 }
