@@ -24,41 +24,45 @@ import java.util.Timer;
 
 public class WebAppInterface {
     Context mContext;
-    public Location  lastLocation = null;
-    private final LocationListener mLocationListener =  new LocationListener() {
-            @Override
-            public void onLocationChanged(final Location location) {
-                lastLocation = location;
-            }
+    public Location lastLocation = null;
+    private final LocationListener mLocationListener = new LocationListener() {
+        @Override
+        public void onLocationChanged(final Location location) {
+            lastLocation = location;
+        }
 
-            @Override
-            public void onStatusChanged(String provider, int status, Bundle extras) {
+        @Override
+        public void onStatusChanged(String provider, int status, Bundle extras) {
 
-            }
+        }
 
-            @Override
-            public void onProviderEnabled(String provider) {
+        @Override
+        public void onProviderEnabled(String provider) {
 
-            }
+        }
 
-            @Override
-            public void onProviderDisabled(String provider) {
+        @Override
+        public void onProviderDisabled(String provider) {
 
-            }
+        }
     };
 
-    /** Instantiate the interface and set the context */
+    /**
+     * Instantiate the interface and set the context
+     */
     WebAppInterface(Context c) {
         mContext = c;
         LocationManager mLocationManager = (LocationManager) mContext.getSystemService(Context.LOCATION_SERVICE);
         if (ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission(mContext, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
-            Log.e("WebInterface","NO GPS Permission" );
+            Log.e("WebInterface", "NO GPS Permission");
         }
         mLocationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER, 5000,
                 10, mLocationListener);
     }
 
-    /** Show a toast from the web page */
+    /**
+     * Show a toast from the web page
+     */
     @JavascriptInterface
     public void showToast(String toast) {
         Toast.makeText(mContext, toast, Toast.LENGTH_SHORT).show();
@@ -97,12 +101,8 @@ public class WebAppInterface {
     @JavascriptInterface
     public String getMyPosition() throws JSONException {
         JSONObject json = new JSONObject();
-
-        while(lastLocation==null) {
-            json.put("lat", lastLocation.getLatitude());
-            json.put("lng", lastLocation.getLongitude());
-
-        }
+        json.put("lat", lastLocation.getLatitude());
+        json.put("lng", lastLocation.getLongitude());
         return json.toString();
     }
 }
