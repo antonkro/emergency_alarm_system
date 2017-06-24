@@ -1,6 +1,7 @@
 function click() {
     easyrtc.disconnect();
     easyrtc.connect();
+    sendData();
 
 
 }
