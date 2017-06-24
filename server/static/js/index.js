@@ -135,7 +135,7 @@ function addData(who, msgType, str) {
 function connect() {
     easyrtc.setPeerListener(addData);
     // easyrtc.setRoomOccupantListener(convertListToButtons);
-    easyrtc.setVideoDims(480,480);
+    easyrtc.setVideoDims(640,480);
 
 
 

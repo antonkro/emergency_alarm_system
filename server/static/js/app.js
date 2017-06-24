@@ -7,7 +7,7 @@ callerVideo.style.display = 'none';
 function connect() {
 
     easyrtc.setPeerListener();
-    easyrtc.setVideoDims(480,480);
+    easyrtc.setVideoDims(640,480);
 
     easyrtc.setRoomOccupantListener(sendData);
 
