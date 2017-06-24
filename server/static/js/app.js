@@ -1,7 +1,18 @@
+var selfEasyrtcid = "";
+
+var callerVideo = document.getElementById("callerVideo");
+callerVideo.style.display = 'none';
+
+
 function connect() {
+
     easyrtc.setPeerListener();
+    easyrtc.setVideoDims(480,480);
+
     easyrtc.setRoomOccupantListener(sendData);
-    easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
+
+    easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
+    // easyrtc.connect("easyrtc.myApp",loginSuccess, loginFailure);
 }
 
 function loginSuccess(easyrtcid) {
@@ -15,7 +26,10 @@ function loginFailure(errorCode, message) {
 }
 
 function mergeAllData(personenDaten, notfallkontakt, location){
-   var alldata = '{"person" : '+personenDaten + ', "contact" : ' + notfallkontakt + ', "location" : '+location+ '}';
+   var alldata = '{"person" : '+personenDaten +
+       ', "contact" : ' + notfallkontakt +
+       ', "location" : '+location+
+       '}';
 
     return alldata;
 }

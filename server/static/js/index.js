@@ -18,8 +18,9 @@ function init() {
     var contact_number = document.getElementById("contact_number");
     var client = null;
     var callBtn = document.getElementById("callBtn");
+    var selfVideo = document.getElementById("selfVideo");
     callBtn.disabled = true;
-
+    selfVideo.style.display = 'none';
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
 
@@ -70,11 +71,11 @@ function init() {
     connect();
 
 }
-function test() {
-    var s = '{"person" : {"name":"Donat","surename":"Balasar","illness":"Keine","bloodgroup":"A"}, "contact" : {"name":"Peter","surename":"Rüdiger","street":"Kanonenweg 2","city":"Reutlingen","phone":"015789677854"}, "location" : {"lat":"48.77930", "lng":"9.10717"}}'
-    addData("", "", s);
-
-}
+// function test() {
+//     var s = '{"person" : {"name":"Donat","surename":"Balasar","illness":"Keine","bloodgroup":"A"}, "contact" : {"name":"Peter","surename":"Rüdiger","street":"Kanonenweg 2","city":"Reutlingen","phone":"015789677854"}, "location" : {"lat":"48.77930", "lng":"9.10717"}}'
+//     addData("", "", s);
+//
+// }
 
 
 document.addEventListener('DOMContentLoaded', init, false);
@@ -108,7 +109,6 @@ function addData(who, msgType, str) {
     // content = content.replace(/\n/g, '<br />');
     client = who;
     callBtn.disabled = false;
-    console.log(client);
     console.log("before parse: " + str);
     // str= str.replace("ü", "&uuml");
     // console.log("after parse: "+str);
@@ -135,8 +135,12 @@ function addData(who, msgType, str) {
 function connect() {
     easyrtc.setPeerListener(addData);
     // easyrtc.setRoomOccupantListener(convertListToButtons);
+    easyrtc.setVideoDims(480,480);
 
-    easyrtc.connect("easyrtc.instantMessaging", loginSuccess, loginFailure);
+
+
+    easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
+    // easyrtc.connect("easyrtc.myApp", loginSuccess, loginFailure);
     // easyrtc.connect("easyrtc.audioVideoSimple", ["callerVideo1"], loginSuccess, loginFailure);
 
 
@@ -183,15 +187,23 @@ function connect() {
         addData("Me", "message", text);
         document.getElementById('sendMessageText').value = "";
     }
+}
 
-    function performCall() {
-        var successCB = function () {
-        };
-        var failureCB = function () {
-        };
-        easyrtc.call(client, successCB, failureCB);
+function setUpMirror() {
+    if( !haveSelfVideo) {
+        var selfVideo = document.getElementById("selfVideo");
+        easyrtc.setVideoObjectSrc(selfVideo, easyrtc.getLocalStream());
+        selfVideo.muted = true;
+        haveSelfVideo = true;
     }
 }
 
+function performCall() {
+    var successCB = function () {
+    };
+    var failureCB = function () {
+    };
+    easyrtc.call(client, successCB, failureCB);
+}
 
 
