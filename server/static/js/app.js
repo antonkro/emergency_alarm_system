@@ -11,10 +11,11 @@ $(document).ready(function () {
     $('#message').hide();
 
     $("#btn").click(function () {
-        $('#btn').prop('disabled', true);
         connect();
 
-        // $('#btn').hide();
+        $('#btn').hide();
+        $('#loader').show();
+
     });
 
     function connect() {
@@ -36,6 +37,7 @@ $(document).ready(function () {
 
     function loginFailure(errorCode, message) {
         easyrtc.showError(errorCode, message);
+        $('#btn').show();
     }
 
     function mergeAllData(personenDaten, notfallkontakt, location) {
@@ -70,15 +72,13 @@ $(document).ready(function () {
 
             if (location == "{}") {
                 if (count == 0) {
-                    $('#loader').show();
-                    $('#btn').hide();
                     $("#message").css("color","red");
                     $('#message').show();
                 }
             }
             else {
+                count=tries;
                 $('#loader').hide();
-                $('#btn').hide();
                 $('#message').html("Verbunden!");
                 $('#message').show();
                 $("#message").css("color","greenyellow");
