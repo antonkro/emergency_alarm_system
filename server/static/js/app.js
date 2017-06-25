@@ -80,6 +80,7 @@ $(document).ready(function () {
                 $('#btn').hide();
                 $('#suspendLocation').style.color("green");
                 $('#suspendLocation').html("Verbunden!");
+                $('#suspendLocation').show();
                 sendStuff(occupants, location);
             }
             if (location == "{}" && count < tries) {

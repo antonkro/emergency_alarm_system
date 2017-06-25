@@ -128,7 +128,8 @@ function addData(who, msgType, str) {
     contact_address.innerHTML = data.contact.street.toString();
     contact_city.innerHTML = data.contact.city.toString();
     contact_number.innerHTML = data.contact.phone.toString();
-    if(data.location="{}"){
+
+    if(data.location=="{}"){
         supendLocation.style.display = 'block';
     }
     else{
