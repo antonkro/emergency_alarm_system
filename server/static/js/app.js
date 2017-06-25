@@ -69,30 +69,32 @@ $(document).ready(function () {
                 sendStuff(occupants, location);
             }
 
-
             if (location == "{}") {
                 if (count == 0) {
-                    $("#message").css("color","red");
+                    $("#message").css("color", "red");
                     $('#message').show();
                 }
             }
+
             else {
-                count=tries;
+                count = tries;
                 $('#loader').hide();
                 $('#message').html("Verbunden!");
                 $('#message').show();
-                $("#message").css("color","greenyellow");
+                $("#message").css("color", "greenyellow");
                 sendStuff(occupants, location);
             }
+
             if (location == "{}" && count < tries) {
                 getLocation(occupants, location, count + 1);
-            } else {
+            }
+
+            if (location == "{}" && count > tries) {
                 $('#loader').hide();
-                // $('#btn').hide();
-                $("#message").css("color","red");
+                $("#message").css("color", "red");
                 $('#message').html("Der GPS Standort konnte nicht ermittelt werden!!!");
             }
+
         }, 5000);
     }
-
 });
