@@ -1,47 +1,91 @@
 var selfEasyrtcid = "";
 
-var callerVideo = document.getElementById("callerVideo");
-callerVideo.style.display = 'none';
+// var callerVideo = document.getElementById("callerVideo");
+// var loader = document.getElementById("loader");
+// var buttonImage = document.getElementById("buttonImage");
 
+$(document).ready(function () {
 
-function connect() {
+    $('#loader').hide();
+    $('#callerVideo').hide();
+    $('#suspendLocation').hide();
 
-    easyrtc.setPeerListener();
-    easyrtc.setVideoDims(480,480);
+    $("#btn").click(function () {
+        connect();
+    });
 
-    easyrtc.setRoomOccupantListener(sendData);
+    function connect() {
 
-    easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
-    // easyrtc.connect("easyrtc.myApp",loginSuccess, loginFailure);
-}
+        easyrtc.setPeerListener();
+        easyrtc.setVideoDims(480, 480);
 
-function loginSuccess(easyrtcid) {
-    selfEasyrtcid = easyrtcid;
-    console.log("I am " + easyrtcid);
-}
+        easyrtc.setRoomOccupantListener(sendData);
 
-
-function loginFailure(errorCode, message) {
-    easyrtc.showError(errorCode, message);
-}
-
-function mergeAllData(personenDaten, notfallkontakt, location){
-   var alldata = '{"person" : '+personenDaten +
-       ', "contact" : ' + notfallkontakt +
-       ', "location" : '+location+
-       '}';
-
-    return alldata;
-}
-
-function sendData(roomName, occupants, isPrimary){
-    //var personenDaten = android.getPersonenDaten();
-    //var kontaktdaten = android.getNotfallKontakt();
-
-    //var location = '{"lat":"48.77930", "lng":"9.10717"}';
-
-    var data = mergeAllData(android.getPersonenDaten(), android.getNotfallKontakt(),  android.getMyPosition());
-    for (var easyrtcid in occupants){
-        easyrtc.sendDataWS(easyrtcid, "message", data );
+        easyrtc.easyApp("easyrtc.audioVideoSimple", "selfVideo", ["callerVideo"], loginSuccess, loginFailure);
+        // easyrtc.connect("easyrtc.myApp",loginSuccess, loginFailure);
     }
-}
+
+    function loginSuccess(easyrtcid) {
+        selfEasyrtcid = easyrtcid;
+        console.log("I am " + easyrtcid);
+    }
+
+
+    function loginFailure(errorCode, message) {
+        easyrtc.showError(errorCode, message);
+    }
+
+    function mergeAllData(personenDaten, notfallkontakt, location) {
+        var alldata = '{"person" : ' + personenDaten +
+            ', "contact" : ' + notfallkontakt +
+            ', "location" : ' + location +
+            '}';
+
+        return alldata;
+    }
+
+    function sendData(roomName, occupants, isPrimary) {
+        getLocation(occupants, android.getMyPosition(), 0);
+    }
+
+    function sendStuff(occupants, location) {
+        var data = mergeAllData(android.getPersonenDaten(), android.getNotfallKontakt(), location);
+        for (var easyrtcid in occupants) {
+            easyrtc.sendDataWS(easyrtcid, "message", data);
+        }
+    }
+
+    function getLocation(occupants, location, count) {
+        $('#btn').prop('disabled', true);
+        var tries = 12;
+        console.log("retrieve Location tries: " + count);
+
+        setTimeout(function () {
+            if (count == 0) {
+                sendStuff(occupants, location);
+            }
+
+
+            if (location == "{}") {
+                if (count == 0) {
+                    $('#loader').show();
+                    $('#btn').hide();
+                    $('#suspendLocation').show();
+                }
+            }
+            else {
+                $('#loader').hide();
+                $('#btn').show();
+                sendStuff(occupants, location);
+            }
+            if (location == "{}" && count < tries) {
+                getLocation(occupants, location, count + 1);
+            }else {
+                $('#loader').hide();
+                // $('#btn').hide();
+                $('#suspendLocation').html("Der GPS Standort konnte nicht ermittelt werden!!!")
+            }
+        }, 5000);
+    }
+
+});

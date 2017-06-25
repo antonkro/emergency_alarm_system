@@ -9,6 +9,9 @@ div {
     width: 100%;
     height: 400px;
 }
+#supendLocation{
+    color: red;
+}
 
 video {
     width: 100%;

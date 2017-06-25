@@ -1,0 +1,61 @@
+.loader {
+    border: 16px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 16px solid #43D1AF;
+    width: 120px;
+    height: 120px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    margin: auto;
+    display: block;
+    margin-top: 50px;
+}
+
+.hidden {
+    display: none;
+}
+#suspendLocation{
+    height: 25px;
+    width: 200px;
+    color: red;
+    margin: auto;
+    display: block;
+    margin-top: 25px;
+}
+
+.btnClass {
+    height: 150px;
+    width: 150px;
+    border-radius: 50px;
+    background: #43D1AF;
+    margin: auto;
+    display: block;
+    margin-top: 50px;
+}
+
+.videoClass {
+    height: 250px;
+    width: 250px;
+    margin: auto;
+    display: block;
+    margin-top: 50px;
+
+}
+
+@-webkit-keyframes spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+    }
+    100% {
+        -webkit-transform: rotate(360deg);
+    }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}

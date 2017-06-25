@@ -19,8 +19,12 @@ function init() {
     var client = null;
     var callBtn = document.getElementById("callBtn");
     var selfVideo = document.getElementById("selfVideo");
+    var supendLocation = document.getElementById("supendLocation");
+
     callBtn.disabled = true;
     selfVideo.style.display = 'none';
+    supendLocation.style.display = 'none';
+
     //Greeting line
     // setTimeout(disableGreeter(), 5000);
 
@@ -124,8 +128,18 @@ function addData(who, msgType, str) {
     contact_address.innerHTML = data.contact.street.toString();
     contact_city.innerHTML = data.contact.city.toString();
     contact_number.innerHTML = data.contact.phone.toString();
+    if(data.location="{}"){
+        supendLocation.style.display = 'block';
+    }
+    else if(data.location.msg.toString() == "ERROR"){
+        supendLocation.innerHTML("Der GPS Standort konnte nicht ermittelt werden!!!")
+    }
+    else{
+        marks(data.location);
+    }
+    console.log(data.location);
 
-    marks(data.location);
+
 
     // document.getElementById('conversation').innerHTML +=
     //     "<b>" + who + ":</b>&nbsp;" + content + "<br />";

@@ -28,7 +28,16 @@ public class WebAppInterface {
     private final LocationListener mLocationListener = new LocationListener() {
         @Override
         public void onLocationChanged(final Location location) {
-            lastLocation = location;
+            SharedPreferences sharedPref = mContext.getSharedPreferences("location", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPref.edit();
+            if(sharedPref.contains("lat")) editor.remove("lat");
+            if(sharedPref.contains("lng")) editor.remove("lng");
+            editor.putString("lat", Double.toString(location.getLatitude()));
+            editor.putString("lng", Double.toString(location.getLongitude()));
+            editor.commit();
+
+
+//            lastLocation = location;
         }
 
         @Override
@@ -100,9 +109,11 @@ public class WebAppInterface {
 
     @JavascriptInterface
     public String getMyPosition() throws JSONException {
+        SharedPreferences sharedPref = mContext.getSharedPreferences("location", Context.MODE_PRIVATE);
         JSONObject json = new JSONObject();
-        json.put("lat", lastLocation.getLatitude());
-        json.put("lng", lastLocation.getLongitude());
+        json.put("lat", sharedPref.getString("lat",null));
+        json.put("lng", sharedPref.getString("lng",null));
         return json.toString();
+
     }
 }

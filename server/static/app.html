@@ -2,47 +2,30 @@
 <html>
 
 <head>
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>Notfallmeldezentrale - App</title>
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.0.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.min.css">
-    <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css" />
+    <link rel="stylesheet" type="text/css" href="/easyrtc/easyrtc.css"/>
+    <link rel="stylesheet" href="css/app.css">
 
 
+    <script src="/js/libs/jquery-3.2.1.min.js"></script>
     <script type="text/javascript" src="/js/libs/socket.io.js"></script>
     <script type="text/javascript" src="/js/libs/easyrtc.js"></script>
     <script type="text/javascript" src="/js/app.js"></script>
 
+
 </head>
 <body>
-<button
-    style="
-        height: 150px;
-        width: 150px;
-        border-radius: 50px;
-        background: #43D1AF;
-        margin:auto;
-        display:block;
-        margin-top:50px;
-        "
-    onclick="connect()"
-><img alt="self-Logo" src="ic_add_alert_white_48px.svg">
+<button id="btn" class="btnClass">
+    <img id="buttonImage" alt="self-Logo" src="ic_add_alert_white_48px.svg">
 </button>
+<div id="loader" class="loader"></div>
+<div id="suspendLocation" >GPS-Standort wird ermittelt...</div>
+<video class="videoClass" autoplay="autoplay" class="easyrtcMirror" id="selfVideo"></video>
 
-<video style="
-        height: 250px;
-        width: 250px;
-        margin:auto;
-        display:block;
-        margin-top:50px;
-        "
-        autoplay="autoplay" class="easyrtcMirror" id="selfVideo" ></video>
-<video  style="
-        height: 250px;
-        width: 250px;
-        margin:auto;
-        display:block;
-        margin-top:50px;
-        "
-        autoplay="autoplay" id="callerVideo"></video>
+
+
+<video class="videoClass" autoplay="autoplay" id="callerVideo"></video>
 </body>
