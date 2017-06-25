@@ -11,8 +11,9 @@ $(document).ready(function () {
     $('#suspendLocation').hide();
 
     $("#btn").click(function () {
-        connect();
         $('#btn').prop('disabled', true);
+        connect();
+
         // $('#btn').hide();
     });
 
