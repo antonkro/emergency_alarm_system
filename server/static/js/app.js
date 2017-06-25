@@ -12,6 +12,8 @@ $(document).ready(function () {
 
     $("#btn").click(function () {
         connect();
+        $('#btn').prop('disabled', true);
+        // $('#btn').hide();
     });
 
     function connect() {
@@ -56,7 +58,6 @@ $(document).ready(function () {
     }
 
     function getLocation(occupants, location, count) {
-        $('#btn').prop('disabled', true);
         var tries = 12;
         console.log("retrieve Location tries: " + count);
 
@@ -80,7 +81,7 @@ $(document).ready(function () {
             }
             if (location == "{}" && count < tries) {
                 getLocation(occupants, location, count + 1);
-            }else {
+            } else {
                 $('#loader').hide();
                 // $('#btn').hide();
                 $('#suspendLocation').html("Der GPS Standort konnte nicht ermittelt werden!!!")
