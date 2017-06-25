@@ -131,9 +131,6 @@ function addData(who, msgType, str) {
     if(data.location="{}"){
         supendLocation.style.display = 'block';
     }
-    else if(data.location.msg.toString() == "ERROR"){
-        supendLocation.innerHTML("Der GPS Standort konnte nicht ermittelt werden!!!")
-    }
     else{
         marks(data.location);
     }

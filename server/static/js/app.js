@@ -77,7 +77,9 @@ $(document).ready(function () {
             }
             else {
                 $('#loader').hide();
-                $('#btn').show();
+                $('#btn').hide();
+                $('#suspendLocation').style.color("green");
+                $('#suspendLocation').html("Verbunden!");
                 sendStuff(occupants, location);
             }
             if (location == "{}" && count < tries) {
@@ -85,7 +87,7 @@ $(document).ready(function () {
             } else {
                 $('#loader').hide();
                 // $('#btn').hide();
-                $('#suspendLocation').html("Der GPS Standort konnte nicht ermittelt werden!!!")
+                $('#suspendLocation').html("Der GPS Standort konnte nicht ermittelt werden!!!");
             }
         }, 5000);
     }
