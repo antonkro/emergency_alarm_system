@@ -78,11 +78,7 @@ $(document).ready(function () {
             else {
                 count = tries;
                 $('#loader').hide();
-                $('#message').html("Verbunden!");
-                $('#message').show();
-                $('#message').removeClass("messageRed");
-                $('#message').addClass("messageGreen");
-
+                $('#message').hide();
                 sendStuff(occupants, location);
             }
 
