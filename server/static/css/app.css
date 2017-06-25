@@ -14,10 +14,19 @@
 .hidden {
     display: none;
 }
-#suspendLocation{
+#messageGreen{
     height: 25px;
     width: 200px;
     margin: auto;
+    color: greenyellow;
+    display: block;
+    margin-top: 25px;
+}
+#messageRed{
+    height: 25px;
+    width: 200px;
+    margin: auto;
+    color: red;
     display: block;
     margin-top: 25px;
 }

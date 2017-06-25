@@ -71,7 +71,6 @@ $(document).ready(function () {
 
             if (location == "{}") {
                 if (count == 0) {
-                    $("#message").css("color", "red");
                     $('#message').show();
                 }
             }
@@ -81,7 +80,9 @@ $(document).ready(function () {
                 $('#loader').hide();
                 $('#message').html("Verbunden!");
                 $('#message').show();
-                $("#message").css("color", "greenyellow");
+                $('#message').removeClass("messageRed");
+                $('#message').addClass("messageGreen");
+
                 sendStuff(occupants, location);
             }
 
@@ -91,7 +92,6 @@ $(document).ready(function () {
 
             if (location == "{}" && count > tries) {
                 $('#loader').hide();
-                $("#message").css("color", "red");
                 $('#message').html("Der GPS Standort konnte nicht ermittelt werden!!!");
             }
 
