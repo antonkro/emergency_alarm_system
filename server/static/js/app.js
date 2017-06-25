@@ -8,7 +8,7 @@ $(document).ready(function () {
 
     $('#loader').hide();
     $('#callerVideo').hide();
-    $('#suspendLocation').hide();
+    $('#message').hide();
 
     $("#btn").click(function () {
         $('#btn').prop('disabled', true);
@@ -72,15 +72,16 @@ $(document).ready(function () {
                 if (count == 0) {
                     $('#loader').show();
                     $('#btn').hide();
-                    $('#suspendLocation').show();
+                    $("#message").css("color","red");
+                    $('#message').show();
                 }
             }
             else {
                 $('#loader').hide();
                 $('#btn').hide();
-                $('#suspendLocation').style.color("green");
-                $('#suspendLocation').html("Verbunden!");
-                $('#suspendLocation').show();
+                $('#message').html("Verbunden!");
+                $('#message').show();
+                $("#message").css("color","greenyellow");
                 sendStuff(occupants, location);
             }
             if (location == "{}" && count < tries) {
@@ -88,7 +89,8 @@ $(document).ready(function () {
             } else {
                 $('#loader').hide();
                 // $('#btn').hide();
-                $('#suspendLocation').html("Der GPS Standort konnte nicht ermittelt werden!!!");
+                $("#message").css("color","red");
+                $('#message').html("Der GPS Standort konnte nicht ermittelt werden!!!");
             }
         }, 5000);
     }
