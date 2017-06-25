@@ -70,8 +70,8 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPref = this.getSharedPreferences("personInNot", Context.MODE_PRIVATE);
 
         if(sharedPref.contains("personInNot")&& sharedPref.contains("personKontakt"))
-            myWebView.loadUrl("https://192.168.0.26/app.html");
-//            myWebView.loadUrl("https://serv.kroisant.de:8080/app.html");
+//            myWebView.loadUrl("https://192.168.0.26/app.html");
+            myWebView.loadUrl("https://serv.kroisant.de:8080/app.html");
         else
             myWebView.loadUrl("file:///android_asset/registrieren1.html");
 //        myWebView.loadUrl("https://serv.kroisant.de:8080/app.html");
